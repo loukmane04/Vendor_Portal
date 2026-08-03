@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Desjardins | External Vendor Portal</title>
+    <style>
+        :root {
+            --primary-color: #007A5E; /* Desjardins Corporate Green */
+            --secondary-color: #f4f6f8;
+            --text-main: #333333;
+            --text-muted: #666666;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #fafbfc;
+            padding: 20px 30px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .card-header h2 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px 15px;
+            align-items: start;
+        }
+        .info-label {
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            padding-top: 10px;
+        }
+        .info-value {
+            font-size: 16px;
+            color: var(--text-main);
+            background: var(--secondary-color);
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: 1px solid #e1e4e8;
+            line-height: 1.5;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
+        }
+        .footer {
+            padding: 20px 30px;
+            background-color: #fafbfc;
+            border-top: 1px solid #eaecef;
+            text-align: right;
+        }
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background-color: #005f49;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Desjardins Partner Connect</h1>
+    </div>
+
+    <div class="container">
+        <div class="card-header">
+            <h2>Work Order Authorization</h2>
+        </div>
+        
+        <div class="card-body">
+            <div class="info-grid">
+                <div class="info-label">Maximo Ticket ID</div>
+                <div class="info-value" id="val-ticket">Awaiting Data...</div>
+
+                <div class="info-label">Priority Level</div>
+                <div class="info-value" id="val-priority">Awaiting Data...</div>
+
+                <div class="info-label">Current Status</div>
+                <div><span class="status-badge" id="val-status">UNKNOWN</span></div>
+
+                <div class="info-label">Issue Description</div>
+                <div class="info-value" id="val-desc" style="min-height: 80px;">Awaiting Data...</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="btn" onclick="alert('Demo Action: This would send a confirmation API call back to Maximo to change the status to IN PROGRESS.')">Accept Work Order</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Read URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // 2. Grab variables passed from Maximo
+        const ticket = urlParams.get('ticketnum');
+        const desc = urlParams.get('desc');
+        const status = urlParams.get('status');
+        const priority = urlParams.get('priority');
+
+        // 3. Inject data into the professional grid
+        if (ticket) {
+            document.getElementById('val-ticket').innerText = ticket;
+            document.getElementById('val-priority').innerText = priority ? priority : 'Standard';
+            document.getElementById('val-status').innerText = status ? status : 'NEW';
+            document.getElementById('val-desc').innerText = desc ? desc : 'No description provided by dispatcher.';
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Desjardins | External Vendor Portal</title>
+    <style>
+        :root {
+            --primary-color: #007A5E; /* Desjardins Corporate Green */
+            --secondary-color: #f4f6f8;
+            --text-main: #333333;
+            --text-muted: #666666;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #fafbfc;
+            padding: 20px 30px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .card-header h2 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px 15px;
+            align-items: start;
+        }
+        .info-label {
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            padding-top: 10px;
+        }
+        .info-value {
+            font-size: 16px;
+            color: var(--text-main);
+            background: var(--secondary-color);
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: 1px solid #e1e4e8;
+            line-height: 1.5;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
+        }
+        .footer {
+            padding: 20px 30px;
+            background-color: #fafbfc;
+            border-top: 1px solid #eaecef;
+            text-align: right;
+        }
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background-color: #005f49;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Desjardins Partner Connect</h1>
+    </div>
+
+    <div class="container">
+        <div class="card-header">
+            <h2>Work Order Authorization</h2>
+        </div>
+        
+        <div class="card-body">
+            <div class="info-grid">
+                <div class="info-label">Maximo Ticket ID</div>
+                <div class="info-value" id="val-ticket">Awaiting Data...</div>
+
+                <div class="info-label">Priority Level</div>
+                <div class="info-value" id="val-priority">Awaiting Data...</div>
+
+                <div class="info-label">Current Status</div>
+                <div><span class="status-badge" id="val-status">UNKNOWN</span></div>
+
+                <div class="info-label">Issue Description</div>
+                <div class="info-value" id="val-desc" style="min-height: 80px;">Awaiting Data...</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="btn" onclick="alert('Demo Action: This would send a confirmation API call back to Maximo to change the status to IN PROGRESS.')">Accept Work Order</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Read URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // 2. Grab variables passed from Maximo
+        const ticket = urlParams.get('ticketnum');
+        const desc = urlParams.get('desc');
+        const status = urlParams.get('status');
+        const priority = urlParams.get('priority');
+
+        // 3. Inject data into the professional grid
+        if (ticket) {
+            document.getElementById('val-ticket').innerText = ticket;
+            document.getElementById('val-priority').innerText = priority ? priority : 'Standard';
+            document.getElementById('val-status').innerText = status ? status : 'NEW';
+            document.getElementById('val-desc').innerText = desc ? desc : 'No description provided by dispatcher.';
+        }
+    </script>
+</body>
+</html>
